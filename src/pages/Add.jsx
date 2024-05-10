@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import FormInput from "../components/formInput";
-import { Box, Button } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import FormRadioInput from "../components/formRadioInput";
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
