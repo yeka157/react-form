@@ -124,25 +124,7 @@ export default function Add() {
   const onSubmit = async () => {
     try {
       setIsLoading(true);
-      if (!name) {
-        setNameErrorMsg('Full name is required!');
-      }
-      if (!phone) {
-        setPhoneErrorMsg('Phone number is required');
-      }
-      if (!email) {
-        setEmailErrorMsg('Email is required!');
-      }
-      if (!address) {
-        setAddressErrorMsg('Address is required');
-      }
-      if (!birthday) {
-        setBirthdayErrorMsg('Birthdate is required');
-      }
-      if (!gender) {
-        setGenderErrorMsg('Please select your gender');
-      }
-      if (!name || !phone || !email || !address || !birthday || !gender) return;
+      if (!name || !phone || !email || !address || !birthday || !gender) return setErrorMsg('ERROR - Incomplete form');
       let url = process.env.REACT_APP_API_URL;
       let res = await Axios.post(url + 'customer', {
         name,
@@ -155,7 +137,7 @@ export default function Add() {
       if (res.data.status === 'success') {
         navigate('/')
       } else {
-        setErrorMsg('Network Error');
+        setErrorMsg(res.data.errorMsg);
       }
     } catch (error) {
       setIsLoading(false);
@@ -179,12 +161,14 @@ export default function Add() {
             isValid={nameValid}
             onChange={onChangeName}
             errorMsg={nameErrorMsg}
+            value={name}
           />
           <FormInput
             label="Phone Number"
             isValid={phoneValid}
             onChange={onChangePhone}
             errorMsg={phoneErrorMsg}
+            value={phone}
             type="number"
           />
           <FormInput
@@ -192,18 +176,21 @@ export default function Add() {
             isValid={emailValid}
             onChange={onChangeEmail}
             errorMsg={emailErrorMsg}
+            value={email}
           />
           <FormInput
             label="Address"
             isValid={addressValid}
             onChange={onChangeAddress}
             errorMsg={addressErrorMsg}
+            value={address}
           />
           <FormInput
             label="Birthdate"
             isValid={birthdayValid}
             onChange={onChangeBirthday}
             errorMsg={birthdayErrorMsg}
+            value={birthday}
             type="date"
           />
           <h1 className="text-md text-gray-900 ps-2">
