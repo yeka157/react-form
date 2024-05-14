@@ -146,14 +146,6 @@ HTTP error 401 for prompt `features`
 
 ---
 
-##  Getting Started
-
-***Requirements***
-
-Ensure you have the following dependencies installed on your system:
-
-* **JavaScript**: `version x.y.z`
-
 ###  Installation
 
 1. Clone the react-form repository:
